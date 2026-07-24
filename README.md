@@ -2,24 +2,16 @@
 
 A 32-bit Complete ALU implemented in Verilog HDL for the Computer Organization course.
 
-## Overview
-
-This project implements a 32-bit Complete ALU by combining
-
-- 32-bit Register File (Read Only)
-- 32-bit Arithmetic Logic Unit (ALU)
-
-The Complete ALU accepts a 32-bit instruction and outputs
-
-- 32-bit execution result
-- Zero flag
-- Carry flag
-
 ---
 
 ## Features
 
-Supported instructions
+- 32-bit Register File
+- 32-bit Arithmetic Logic Unit
+- Zero Flag
+- Carry Flag
+
+Supported Instructions
 
 | Instruction | Function Code |
 |-------------|---------------|
@@ -34,57 +26,59 @@ Supported instructions
 
 ```
 RTL/
-├── RF.v
-├── ALU.v
-└── CompALU.v
+    ALU.v
+    RF.v
+    CompALU.v
+
+result/
+    tb_RF_waveform.png
+    tb_ALU_waveform.png
+    tb_CompALU_waveform.png
 
 doc/
-└── HW1.pdf
+    HW1.pdf
 ```
 
 ---
 
-## Instruction Format
-
-| OP | rs | rt | rd | shamt | funct |
-|----|----|----|----|-------|-------|
-|6 bits|5 bits|5 bits|5 bits|5 bits|6 bits|
-
----
-
-## Module Description
+## Functional Simulation
 
 ### Register File
 
-- 32 registers
-- 32-bit width
-- Read-only
-- Two read ports
+The register file supports two read ports and is initialized using `RF.dat`.
 
-### ALU
+![RF](result/tb_RF_waveform.png)
 
-Operations
+---
 
-- Unsigned Addition
-- Unsigned Subtraction
+### Arithmetic Logic Unit
+
+The ALU supports:
+
+- ADDU
+- SUBU
 - NOR
-- Logical Shift Left
+- SLL
 
-Outputs
+![ALU](result/tb_ALU_waveform.png)
+
+---
+
+### Complete ALU
+
+The Complete ALU combines the Register File and ALU to execute a 32-bit instruction and outputs:
 
 - ALUResult
 - Zero
 - Carry
 
-### Complete ALU
-
-Combines Register File and ALU into a complete execution unit.
+![CompALU](result/tb_CompALU_waveform.png)
 
 ---
 
 ## Verification
 
-The design has been verified using the course-provided testbench.
+The RTL modules were verified using the course-provided testbench.
 
 To respect the course materials, the instructor-provided testbench and test vectors are **not included** in this repository.
 
@@ -96,9 +90,3 @@ To respect the course materials, the instructor-provided testbench and test vect
 - ModelSim
 - VS Code
 - Git
-
----
-
-## Author
-
-Chieh-Cheng Yang
